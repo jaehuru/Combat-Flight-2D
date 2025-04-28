@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 8fda8e223740e5e4194e0f0d55a02830
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 38653
+  packageName: Basic Pixel Art for Retro 2D Shooter
+  packageVersion: 1.01
+  assetPath: Assets/stg_basic_pics/sample_animations/enemybullet/enemybulletanim015.prefab
+  uploadId: 70607

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: a997ebf7ae5078e4a852e72cf9afcab8
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 38653
+  packageName: Basic Pixel Art for Retro 2D Shooter
+  packageVersion: 1.01
+  assetPath: Assets/stg_basic_pics/sample_animations/items/weaponchangesample.anim
+  uploadId: 70607

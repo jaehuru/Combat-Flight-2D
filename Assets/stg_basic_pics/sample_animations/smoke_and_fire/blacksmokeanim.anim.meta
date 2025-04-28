@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 0518bff58b5b47d4691067e3dc4b21f6
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 38653
+  packageName: Basic Pixel Art for Retro 2D Shooter
+  packageVersion: 1.01
+  assetPath: Assets/stg_basic_pics/sample_animations/smoke_and_fire/blacksmokeanim.anim
+  uploadId: 70607

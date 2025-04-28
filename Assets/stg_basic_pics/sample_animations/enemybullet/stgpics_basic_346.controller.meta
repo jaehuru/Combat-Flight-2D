@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: d68eade839699e247ad795b5d9c97203
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 38653
+  packageName: Basic Pixel Art for Retro 2D Shooter
+  packageVersion: 1.01
+  assetPath: Assets/stg_basic_pics/sample_animations/enemybullet/stgpics_basic_346.controller
+  uploadId: 70607

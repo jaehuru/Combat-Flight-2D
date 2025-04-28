@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 0bd1f14ffb5e3a14ba919293aed224ec
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 38653
+  packageName: Basic Pixel Art for Retro 2D Shooter
+  packageVersion: 1.01
+  assetPath: Assets/stg_basic_pics/sample_animations/hiteffect/stgpics_basic_464.controller
+  uploadId: 70607

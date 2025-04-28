@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 5d0a772d6c97c384ab1272aa7554ea27
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 38653
+  packageName: Basic Pixel Art for Retro 2D Shooter
+  packageVersion: 1.01
+  assetPath: Assets/stg_basic_pics/sample_animations/smoke_and_fire/whitesmokeanim.prefab
+  uploadId: 70607

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 2966761142f3868409d977e46da97085
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 38653
+  packageName: Basic Pixel Art for Retro 2D Shooter
+  packageVersion: 1.01
+  assetPath: Assets/stg_basic_pics/sample_animations/explosion/explosion013anim.anim
+  uploadId: 70607

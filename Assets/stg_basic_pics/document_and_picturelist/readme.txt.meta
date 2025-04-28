@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: ba685583ba47ad84eb66a08503afc2a2
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 38653
+  packageName: Basic Pixel Art for Retro 2D Shooter
+  packageVersion: 1.01
+  assetPath: Assets/stg_basic_pics/document_and_picturelist/readme.txt
+  uploadId: 70607

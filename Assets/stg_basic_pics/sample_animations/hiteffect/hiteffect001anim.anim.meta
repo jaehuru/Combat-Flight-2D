@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 2a275e3d4cfc2314c9c3864b32f9b4d2
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 38653
+  packageName: Basic Pixel Art for Retro 2D Shooter
+  packageVersion: 1.01
+  assetPath: Assets/stg_basic_pics/sample_animations/hiteffect/hiteffect001anim.anim
+  uploadId: 70607

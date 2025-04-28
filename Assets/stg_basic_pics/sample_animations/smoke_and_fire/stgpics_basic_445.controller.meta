@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: d01e90de3e6a97b4a935115eb5651066
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 38653
+  packageName: Basic Pixel Art for Retro 2D Shooter
+  packageVersion: 1.01
+  assetPath: Assets/stg_basic_pics/sample_animations/smoke_and_fire/stgpics_basic_445.controller
+  uploadId: 70607

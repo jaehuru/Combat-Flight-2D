@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: f5b109b0b3e478f438d4fb992cfbce4d
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 38653
+  packageName: Basic Pixel Art for Retro 2D Shooter
+  packageVersion: 1.01
+  assetPath: Assets/stg_basic_pics/sample_animations/smoke_and_fire/fire001anim.anim
+  uploadId: 70607
