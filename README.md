@@ -1,27 +1,24 @@
-✈️ Combat_Flight_2D
-프로젝트 개요
+# Combat_Flight_2D
 
-항목 | 내용
-장르 | 2D 비행 슈팅 게임
-개발 환경 | Unity 6000.0.47f1 / Visual Studio 2022 / Windows
+## 장르
+- ' 2D 비행 슈팅 게임 '
 
-주요 시스템
-🎯 GameManager (Singleton Pattern)
-전역 게임 상태 및 흐름 관리
+## 개발 환경
+- ' Unity 6000.0.47f1 '
+- ' Visual Studio 2022 '
+- ' Window '
 
-게임 오버, 승리, 리스폰 처리
+## 주요 기능
+1. GameManager (Singleton Pattern)
+  - 전역 게임 상태 관리
+  - 싱글톤 패턴을 적용해 어디서든 접근 가능
 
-BGM, 이펙트 볼륨 조정 기능 제공
+2. Object Pooling System
+  - PoolManager를 통한 반복 생성/삭제 최소화 (오브젝트 생성 비용 감소)
+  - 메모리 할당 및 가비지 컬렉션(GC) 부담 완화
 
-💾 Object Pooling System
-오브젝트 생성/파괴 비용 감소
-
-메모리 할당 최소화
-
-GC(가비지 컬렉션) 부하 방지
-
-⏳ Coroutine-based Timing
-시간 기반 이벤트 흐름 (리스폰 대기, 보스 등장 연출)
-
-부드러운 논블로킹 비동기 처리
-
+3. Coroutine-based Timing
+  - 플레이어 리스폰 딜레이
+  - 보스 등장 전 경고 텍스트 표시
+  - 부드러운 이벤트 흐름 구현
+  - 논블로킹 방식으로 시간 기반 이벤트 처리
