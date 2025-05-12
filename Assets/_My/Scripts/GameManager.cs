@@ -1,5 +1,7 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class GameManager : MonoBehaviour
 {
@@ -17,6 +19,10 @@ public class GameManager : MonoBehaviour
     public float effectVolume = 1;
 
     [SerializeField] Player player;
+
+    [Header("UI")]
+    [SerializeField] Text livesText;
+
     int totalLives = 3;
     int currentLives;
 
@@ -72,15 +78,23 @@ public class GameManager : MonoBehaviour
     private void ResetLives()
     {
         currentLives = totalLives;
+        UpdateLifeUI();
+    }
+
+    private void UpdateLifeUI()
+    {
+        livesText.text = "Life:" + currentLives.ToString();
     }
 
     public void PlayerDestruction()
     {
         currentLives--;
 
+        UpdateLifeUI();
+
         Debug.Log(currentLives);
 
-        if (currentLives < 0)
+        if (currentLives <= 0)
         {
             GameOver();
         }

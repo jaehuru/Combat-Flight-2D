@@ -5,12 +5,11 @@ public class Boss : MonoBehaviour
 {
     new Rigidbody2D rigidbody2D;
 
-    private int health = 50; // º¸½º Ã¼·Â
-    private bool isDead = false; // º¸½º°¡ Á×¾ú´ÂÁö ¿©ºÎ
+    private int health = 50; // ï¿½ï¿½ï¿½ï¿½ Ã¼ï¿½ï¿½
+    private bool isDead = false; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½×¾ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     
-    [SerializeField] private GameObject laserPrefab; // ·¹ÀÌÀú ÇÁ¸®ÆÕ
-    [SerializeField] private float laserInterval = 1f; // ·¹ÀÌÀú ¹ß»ç °£°Ý
-    [SerializeField] private float laserSpeed = 8f; // ·¹ÀÌÀú ¼Óµµ
+    [SerializeField] private float laserInterval = 1f; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß»ï¿½ ï¿½ï¿½ï¿½ï¿½
+    [SerializeField] private float laserSpeed = 8f; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Óµï¿½
 
     GameManager gameManager;
     Animator animator;
@@ -22,10 +21,10 @@ public class Boss : MonoBehaviour
         animator = GetComponent<Animator>();
         gameManager = GameManager.instance;
 
-        // Rigidbody2D¸¦ KinematicÀ¸·Î ¼³Á¤ÇÏ¿© ¹°¸®Àû ¹ÝÀÀÀ» ¸·À½
+        // Rigidbody2Dï¿½ï¿½ Kinematicï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         rigidbody2D.bodyType = RigidbodyType2D.Kinematic;
 
-        StartCoroutine(ShootLasers()); // ·¹ÀÌÀú ¹ß»ç ½ÃÀÛ
+        StartCoroutine(ShootLasers()); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß»ï¿½ ï¿½ï¿½ï¿½ï¿½
     }
 
     // Update is called once per frame
@@ -38,32 +37,36 @@ public class Boss : MonoBehaviour
     {
         while (!isDead)
         {
-            // ·£´ýÇÑ X À§Ä¡¿¡¼­ ·¹ÀÌÀú ¹ß»ç
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ X ï¿½ï¿½Ä¡ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß»ï¿½
             for (int i = 0; i < 6; i++)
             {
-                float randomX = Random.Range(-5f, 5f); // X °ª ¹üÀ§ Á¶Á¤
+                float randomX = Random.Range(-5f, 5f); // X ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
                 ShootLaser(new Vector2(randomX, transform.position.y));
             }
 
-            yield return new WaitForSeconds(laserInterval); // ·¹ÀÌÀú ¹ß»ç °£°Ý
+            yield return new WaitForSeconds(laserInterval); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß»ï¿½ ï¿½ï¿½ï¿½ï¿½
         }
     }
 
     private void ShootLaser(Vector2 position)
     {
-        GameObject laser = Instantiate(laserPrefab, position, Quaternion.identity);
-        Rigidbody2D laserRb = laser.GetComponent<Rigidbody2D>();
+        // PoolManagerï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã»
+        GameObject laser = gameManager.poolManager.RequestLaserObject(PoolManager.ObjectType.EnemyLaser);
+        laser.transform.position = position; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½
 
-        // ·¹ÀÌÀú°¡ ¾Æ·¡·Î ÀÌµ¿ÇÏµµ·Ï ¼³Á¤
+        Rigidbody2D laserRb = laser.GetComponent<Rigidbody2D>();
+        laser.SetActive(true); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È°ï¿½ï¿½È­
+
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Æ·ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ï¿½Ïµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         laserRb.linearVelocity = new Vector2(0, -laserSpeed);
     }
 
-    // ·¹ÀÌÀú°¡ º¸½º¸¦ ¸Â¾ÒÀ» ¶§ Ã³¸®
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Â¾ï¿½ï¿½ï¿½ ï¿½ï¿½ Ã³ï¿½ï¿½
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("PlayerLaser"))
         {
-            health -= 1;  // º¸½º Ã¼·Â Â÷°¨
+            health -= 1;  // ï¿½ï¿½ï¿½ï¿½ Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
             if (health <= 0)
             {
@@ -74,16 +77,16 @@ public class Boss : MonoBehaviour
 
     private void Die()
     {
-        isDead = true; // º¸½º°¡ Á×¾ú´Ù°í ¼³Á¤
-        animator.SetBool("Die", true);  // "Die"¶ó´Â boolÀ» true·Î ¼³Á¤ÇÏ¿© ¾Ö´Ï¸ÞÀÌ¼Ç ½ÃÀÛ
+        isDead = true; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½×¾ï¿½ï¿½Ù°ï¿½ ï¿½ï¿½ï¿½ï¿½
+        animator.SetBool("Die", true);  // "Die"ï¿½ï¿½ï¿½ boolï¿½ï¿½ trueï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½ï¿½
         StartCoroutine(DisableAfterAnimation());
     }
 
     private IEnumerator DisableAfterAnimation()
     {
-        // ¾Ö´Ï¸ÞÀÌ¼ÇÀÇ ±æÀÌ¸¸Å­ ´ë±â (¾Ö´Ï¸ÞÀÌ¼ÇÀÇ ±æÀÌ´Â ¾Ö´Ï¸ÞÀÌ¼Ç Å¬¸³ÀÇ Áö¼Ó ½Ã°£¿¡ ¸ÂÃç ¼³Á¤)
+        // ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¸ï¿½Å­ ï¿½ï¿½ï¿½ (ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì´ï¿½ ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)
         yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
-        // º¸½º ºñÈ°¼ºÈ­
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È°ï¿½ï¿½È­
         gameObject.SetActive(false);
         gameManager.Victory();
     }

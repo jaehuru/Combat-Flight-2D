@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections;
 
 public class Player : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class Player : MonoBehaviour
     [SerializeField] float rightLimit = 5;
 
     Animator animator;
+    SpriteRenderer spriteRenderer;
 
     float fireDelay = 0.3f;
     float fireTimer;
@@ -18,11 +20,14 @@ public class Player : MonoBehaviour
 
     GameManager gameManager;
 
+    private bool isInvincible = false;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
         gameManager = GameManager.instance;
 
         ReSpawn();
@@ -104,10 +109,47 @@ public class Player : MonoBehaviour
     {
         rigidbody2D.linearVelocity = Vector2.zero;
         transform.position = spawnPosition.transform.position;
+
+        // 부활 후 무적 상태 1.5초
+        StartCoroutine(InvincibilityCoroutine());
+    }
+
+    private IEnumerator InvincibilityCoroutine()
+    {
+        isInvincible = true;  // 무적 상태로 설정
+        StartCoroutine(FlashInvincibility());
+        yield return new WaitForSeconds(1.5f);  // 1.5초 대기
+        isInvincible = false;  // 무적 상태 해제
+    }
+
+    private IEnumerator FlashInvincibility()
+    {
+        float flashDuration = 0.1f;  // 깜빡이는 간격
+        float totalInvincibleTime = 1.5f;
+        float timeElapsed = 0f;
+
+        // 무적 시작: 물리 반응 끄기
+        isInvincible = true;
+        rigidbody2D.isKinematic = true;
+
+        while (timeElapsed < totalInvincibleTime)
+        {
+            spriteRenderer.enabled = !spriteRenderer.enabled;
+            yield return new WaitForSeconds(flashDuration);
+            timeElapsed += flashDuration;
+        }
+
+        // 무적 끝: 다시 물리 반응 켜기
+        spriteRenderer.enabled = true;
+        rigidbody2D.isKinematic = false;
+        isInvincible = false;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        // 무적 상태일 때는 충돌 처리 무시
+        if (isInvincible) return;
+
         if (collision.gameObject.CompareTag("EnemyLaser"))
         {
             StartDestroyEffect();

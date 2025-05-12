@@ -8,7 +8,7 @@ public class PoolManager : MonoBehaviour
     [SerializeField] GameObject enemyLaserPrefab;
     [SerializeField] GameObject destroyEffectPrefab;
     List<GameObject> playerLasers = new List<GameObject>(5);
-    List<GameObject> enemyLasers = new List<GameObject>(15);
+    List<GameObject> enemyLasers = new List<GameObject>(30);
     List<GameObject> destroyEffects = new List<GameObject>(5);
 
     public enum ObjectType
