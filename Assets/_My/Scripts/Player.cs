@@ -37,16 +37,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         if (fireTimer > 0)
-        {
             fireTimer -= Time.deltaTime;
-            return;
-        }
-
-        if (triggerPull)
-        {
-            triggerPull = false;
-            Shoot();
-        }
     }
 
     private void FixedUpdate()
@@ -64,11 +55,9 @@ public class Player : MonoBehaviour
 
         transform.position = playerPosition;
     }
-
-    public void OnMove(InputValue inputValue)
+    
+    public void Move(float input)
     {
-        float input = inputValue.Get<Vector2>().x;
-
         if (input > 0)
         {
             animator.SetBool("Right", true);
@@ -79,7 +68,6 @@ public class Player : MonoBehaviour
             animator.SetBool("Left", true);
             animator.SetBool("Right", false);
         }
-
 
         if (Mathf.Abs(input) > 0)
         {
@@ -92,11 +80,16 @@ public class Player : MonoBehaviour
             animator.SetBool("Right", false);
         }
     }
-    public void OnShoot()
+    
+    public void TryShoot()
     {
-        triggerPull = true;
-    }
+        if (fireTimer > 0) return;
 
+        fireTimer = fireDelay;
+
+        Shoot();
+    }
+    
     private void Shoot()
     {
         fireTimer = fireDelay;
@@ -110,25 +103,25 @@ public class Player : MonoBehaviour
         rigidbody2D.linearVelocity = Vector2.zero;
         transform.position = spawnPosition.transform.position;
 
-        // ºÎÈ° ÈÄ ¹«Àû »óÅÂ 1.5ÃÊ
+        // ï¿½ï¿½È° ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 1.5ï¿½ï¿½
         StartCoroutine(InvincibilityCoroutine());
     }
 
     private IEnumerator InvincibilityCoroutine()
     {
-        isInvincible = true;  // ¹«Àû »óÅÂ·Î ¼³Á¤
+        isInvincible = true;  // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â·ï¿½ ï¿½ï¿½ï¿½ï¿½
         StartCoroutine(FlashInvincibility());
-        yield return new WaitForSeconds(1.5f);  // 1.5ÃÊ ´ë±â
-        isInvincible = false;  // ¹«Àû »óÅÂ ÇØÁ¦
+        yield return new WaitForSeconds(1.5f);  // 1.5ï¿½ï¿½ ï¿½ï¿½ï¿½
+        isInvincible = false;  // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     }
 
     private IEnumerator FlashInvincibility()
     {
-        float flashDuration = 0.1f;  // ±ôºýÀÌ´Â °£°Ý
+        float flashDuration = 0.1f;  // ï¿½ï¿½ï¿½ï¿½ï¿½Ì´ï¿½ ï¿½ï¿½ï¿½ï¿½
         float totalInvincibleTime = 1.5f;
         float timeElapsed = 0f;
 
-        // ¹«Àû ½ÃÀÛ: ¹°¸® ¹ÝÀÀ ²ô±â
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½: ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         isInvincible = true;
         rigidbody2D.isKinematic = true;
 
@@ -139,7 +132,7 @@ public class Player : MonoBehaviour
             timeElapsed += flashDuration;
         }
 
-        // ¹«Àû ³¡: ´Ù½Ã ¹°¸® ¹ÝÀÀ ÄÑ±â
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½: ï¿½Ù½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ±ï¿½
         spriteRenderer.enabled = true;
         rigidbody2D.isKinematic = false;
         isInvincible = false;
@@ -147,7 +140,7 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        // ¹«Àû »óÅÂÀÏ ¶§´Â Ãæµ¹ Ã³¸® ¹«½Ã
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½æµ¹ Ã³ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         if (isInvincible) return;
 
         if (collision.gameObject.CompareTag("EnemyLaser"))
