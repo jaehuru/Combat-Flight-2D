@@ -8,6 +8,12 @@
 - ' Visual Studio 2022 ', ' Jetbrain Rider '
 - ' WindowOS ', ' MacOS '
 
+## 지원하는 운영체제
+- ' WindowOS '
+- ' MacOS '
+- ' iOS '
+- ' Android '
+
 ## 주요 기능
 1. GameManager (Singleton Pattern)
   - 전역 게임 상태 관리
@@ -21,6 +27,8 @@
   - 플레이어 리스폰 딜레이
   - 보스 등장 전 경고 텍스트 표시
   - 논블로킹 방식으로 시간 기반 이벤트 처리
+
+4. 모바일 환경에 최적화된 터치 기반 UI 및 조작 시스템
 
 ## 기억에 남는 버그 및 해결 과정
 적(Enemy) 공격 중단 버그
