@@ -110,27 +110,27 @@ public class Player : MonoBehaviour
         rigidbody2D.linearVelocity = Vector2.zero;
         transform.position = spawnPosition.transform.position;
 
-        // ºÎÈ° ÈÄ ¹«Àû »óÅÂ 1.5ÃÊ
+        // ë¶€í™œ í›„ ë¬´ì  ìƒíƒœ 1.5ì´ˆ
         StartCoroutine(InvincibilityCoroutine());
     }
 
     private IEnumerator InvincibilityCoroutine()
     {
-        isInvincible = true;  // ¹«Àû »óÅÂ·Î ¼³Á¤
+        isInvincible = true;  // ë¬´ì  ìƒíƒœë¡œ ì„¤ì •
         StartCoroutine(FlashInvincibility());
-        yield return new WaitForSeconds(1.5f);  // 1.5ÃÊ ´ë±â
-        isInvincible = false;  // ¹«Àû »óÅÂ ÇØÁ¦
+        yield return new WaitForSeconds(1.5f);  // 1.5ì´ˆ ëŒ€ê¸°
+        isInvincible = false;  // ë¬´ì  ìƒíƒœ í•´ì œ
     }
 
     private IEnumerator FlashInvincibility()
     {
-        float flashDuration = 0.1f;  // ±ôºıÀÌ´Â °£°İ
+        float flashDuration = 0.1f;  // ê¹œë¹¡ì´ëŠ” ê°„ê²©
         float totalInvincibleTime = 1.5f;
         float timeElapsed = 0f;
 
-        // ¹«Àû ½ÃÀÛ: ¹°¸® ¹İÀÀ ²ô±â
+        // ë¬´ì  ì‹œì‘: ë¬¼ë¦¬ ë°˜ì‘ ë„ê¸°
         isInvincible = true;
-        rigidbody2D.isKinematic = true;
+        rigidbody2D.bodyType = RigidbodyType2D.Kinematic;
 
         while (timeElapsed < totalInvincibleTime)
         {
@@ -139,15 +139,15 @@ public class Player : MonoBehaviour
             timeElapsed += flashDuration;
         }
 
-        // ¹«Àû ³¡: ´Ù½Ã ¹°¸® ¹İÀÀ ÄÑ±â
+        // ë¬´ì  ë: ë‹¤ì‹œ ë¬¼ë¦¬ ë°˜ì‘ ì¼œê¸°
         spriteRenderer.enabled = true;
-        rigidbody2D.isKinematic = false;
+        rigidbody2D.bodyType = RigidbodyType2D.Dynamic;
         isInvincible = false;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        // ¹«Àû »óÅÂÀÏ ¶§´Â Ãæµ¹ Ã³¸® ¹«½Ã
+        // ë¬´ì  ìƒíƒœì¼ ë•ŒëŠ” ì¶©ëŒ ì²˜ë¦¬ ë¬´ì‹œ
         if (isInvincible) return;
 
         if (collision.gameObject.CompareTag("EnemyLaser"))
