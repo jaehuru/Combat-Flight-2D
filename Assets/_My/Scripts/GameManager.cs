@@ -129,8 +129,14 @@ public class GameManager : MonoBehaviour
     // 게임 오버 처리
     public void GameOver()
     {
-        gameOverText.SetActive(true);  // 게임 오버 텍스트 활성화
-        endButtonGroup.SetActive(true); // Retry / Exit 버튼 보이기
+        gameOverText.SetActive(true);
+        endButtonGroup.SetActive(true);
+        StartCoroutine(DelayPause());
+    }
+
+    IEnumerator DelayPause()
+    {
+        yield return null; // UI 렌더링 끝난 후
         Time.timeScale = 0f;
     }
 
