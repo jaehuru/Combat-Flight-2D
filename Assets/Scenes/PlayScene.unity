@@ -1618,6 +1618,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1221922125148113328, guid: daeca6884ca3f6d44a3099f8cb9440a9, type: 3}
+      propertyPath: m_Text
+      value: GameOver
+      objectReference: {fileID: 0}
+    - target: {fileID: 1221922125148113328, guid: daeca6884ca3f6d44a3099f8cb9440a9, type: 3}
       propertyPath: m_Color.b
       value: 0.19607845
       objectReference: {fileID: 0}
