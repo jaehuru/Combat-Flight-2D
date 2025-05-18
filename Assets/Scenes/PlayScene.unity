@@ -1914,6 +1914,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 56698457}
     m_Modifications:
+    - target: {fileID: 1489154284331351344, guid: 7273bf7fff673b043a319c33d9c0c56a, type: 3}
+      propertyPath: m_Name
+      value: Retry Text
+      objectReference: {fileID: 0}
     - target: {fileID: 2264838888135528967, guid: 7273bf7fff673b043a319c33d9c0c56a, type: 3}
       propertyPath: m_Color.a
       value: 0
