@@ -5,8 +5,8 @@
 
 ## 개발 환경
 - ' Unity 6000.0.47f1 '
-- ' Visual Studio 2022 '
-- ' Window '
+- ' Visual Studio 2022 ', ' Jetbrain Rider '
+- ' WindowOS ', ' MacOS '
 
 ## 주요 기능
 1. GameManager (Singleton Pattern)
