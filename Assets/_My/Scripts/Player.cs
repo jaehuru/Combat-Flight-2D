@@ -37,16 +37,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         if (fireTimer > 0)
-        {
             fireTimer -= Time.deltaTime;
-            return;
-        }
-
-        if (triggerPull)
-        {
-            triggerPull = false;
-            Shoot();
-        }
     }
 
     private void FixedUpdate()
@@ -65,10 +56,8 @@ public class Player : MonoBehaviour
         transform.position = playerPosition;
     }
 
-    public void OnMove(InputValue inputValue)
+    public void Move(float input)
     {
-        float input = inputValue.Get<Vector2>().x;
-
         if (input > 0)
         {
             animator.SetBool("Right", true);
@@ -79,7 +68,6 @@ public class Player : MonoBehaviour
             animator.SetBool("Left", true);
             animator.SetBool("Right", false);
         }
-
 
         if (Mathf.Abs(input) > 0)
         {
@@ -92,9 +80,14 @@ public class Player : MonoBehaviour
             animator.SetBool("Right", false);
         }
     }
-    public void OnShoot()
+
+    public void TryShoot()
     {
-        triggerPull = true;
+        if (fireTimer > 0) return;
+
+        fireTimer = fireDelay;
+
+        Shoot();
     }
 
     private void Shoot()
@@ -110,25 +103,23 @@ public class Player : MonoBehaviour
         rigidbody2D.linearVelocity = Vector2.zero;
         transform.position = spawnPosition.transform.position;
 
-        // 부활 후 무적 상태 1.5초
         StartCoroutine(InvincibilityCoroutine());
     }
 
     private IEnumerator InvincibilityCoroutine()
     {
-        isInvincible = true;  // 무적 상태로 설정
+        isInvincible = true;
         StartCoroutine(FlashInvincibility());
-        yield return new WaitForSeconds(1.5f);  // 1.5초 대기
-        isInvincible = false;  // 무적 상태 해제
+        yield return new WaitForSeconds(1.5f);
+        isInvincible = false; 
     }
 
     private IEnumerator FlashInvincibility()
     {
-        float flashDuration = 0.1f;  // 깜빡이는 간격
+        float flashDuration = 0.1f; 
         float totalInvincibleTime = 1.5f;
         float timeElapsed = 0f;
 
-        // 무적 시작: 물리 반응 끄기
         isInvincible = true;
         rigidbody2D.bodyType = RigidbodyType2D.Kinematic;
 
@@ -139,7 +130,6 @@ public class Player : MonoBehaviour
             timeElapsed += flashDuration;
         }
 
-        // 무적 끝: 다시 물리 반응 켜기
         spriteRenderer.enabled = true;
         rigidbody2D.bodyType = RigidbodyType2D.Dynamic;
         isInvincible = false;
@@ -147,7 +137,6 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        // 무적 상태일 때는 충돌 처리 무시
         if (isInvincible) return;
 
         if (collision.gameObject.CompareTag("EnemyLaser"))

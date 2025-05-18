@@ -11,8 +11,8 @@ public class MenuUI : MonoBehaviour
 
     public void OnClickRestart()
     {
-        Time.timeScale = 1f;  // 멈췄던 게임 시간 다시 흐르게
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);  // 현재 씬 재로드
+        Time.timeScale = 1f;  
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name); 
     }
 
     public void OnClickExit()
