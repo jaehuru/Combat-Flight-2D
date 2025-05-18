@@ -109,7 +109,6 @@ public class EnemyManager : MonoBehaviour
     public void AddScore(int amount)
     {
         totalScore += amount;
-        Debug.Log(totalScore);
         if (totalScore >= bossSpawnScore && !bossSpawned)
         {
             bossSpawned = true;

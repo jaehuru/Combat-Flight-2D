@@ -32,6 +32,8 @@ public class GameManager : MonoBehaviour
     public GameObject victoryText;
     public GameObject bossText;
 
+    [SerializeField] GameObject endButtonGroup;
+
     private void Awake()
     {
         if (instance != null && instance != this)
@@ -83,7 +85,14 @@ public class GameManager : MonoBehaviour
 
     private void UpdateLifeUI()
     {
-        livesText.text = "Life:" + currentLives.ToString();
+        if (livesText != null)
+        {
+            livesText.text = "Life:" + currentLives.ToString();
+        }
+        else
+        {
+            Debug.LogWarning("livesText is not assigned!");
+        }
     }
 
     public void PlayerDestruction()
@@ -115,13 +124,13 @@ public class GameManager : MonoBehaviour
     public void AddScore(int value)
     {
         currentScore += value;
-        Debug.Log(currentScore);
     }
 
     // 게임 오버 처리
     public void GameOver()
     {
         gameOverText.SetActive(true);  // 게임 오버 텍스트 활성화
+        endButtonGroup.SetActive(true); // Retry / Exit 버튼 보이기
         Time.timeScale = 0f;
     }
 
@@ -129,6 +138,7 @@ public class GameManager : MonoBehaviour
     public void Victory()
     {
         victoryText.SetActive(true);  // 승리 텍스트 활성화
+        endButtonGroup.SetActive(true); // Retry / Exit 버튼 보이기
         Time.timeScale = 0f;
     }
 
