@@ -10,6 +10,7 @@
 
 ## 호환 OS
 - ' iOS '
+- ' Android '
 
 ## 주요 기능
 1. GameManager (Singleton Pattern)
